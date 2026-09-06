@@ -25,9 +25,11 @@ export function nextPlayer(isXNext) {
 }
 
 export function nextMove( squares, index, isXNext ) {
-    if(squares[index]) return squares;
+    if(squares[index] || calculateWinner(squares)){
+         return squares;
+    }
 
-    const next = squares.slice();
+    const next = [...squares]
     next[index] = nextPlayer(isXNext);
     return next;
 }
