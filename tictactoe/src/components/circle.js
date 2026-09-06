@@ -1,16 +1,9 @@
-import { useState } from "react";
+import { TbHexagonLetterOFilled } from "react-icons/tb";
+
 function Circle() {
-  const [value, setValue] = useState(null);
-
-  function handleClick() {
-    setValue("O");
-  }
-
-  return (
-    <button className="circle" onClick={handleClick}>
-      {value}
-    </button>
-  );
-}
+   return (
+       <TbHexagonLetterOFilled size={50}/>
+       );
+    }
 
 export default Circle;

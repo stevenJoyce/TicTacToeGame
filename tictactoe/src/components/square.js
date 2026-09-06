@@ -1,8 +1,11 @@
+import X from "./x";
+import Circle from "./circle";
 
 function Square( { value, onSquareClick } ) {
     return (
     <button className="square" onClick={onSquareClick}>
-      {value}
+      {value === "X" && <X />}
+      {value === "O" && <Circle />}
     </button>
     );
 }

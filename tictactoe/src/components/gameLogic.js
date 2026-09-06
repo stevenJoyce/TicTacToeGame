@@ -15,8 +15,8 @@ return null;
 }
 
 export function draw(squares) {
-    const hasWinner = Boolean(calculateWinner(squares));
     const isFull = squares.every(Boolean);
+    const hasWinner = calculateWinner(squares);
     return !hasWinner && isFull;
 }
 

@@ -1,18 +1,7 @@
-import { useState } from "react";
-
+import { TbHexagonLetterXFilled } from "react-icons/tb";
 function X() {
-  const [value, setValue] = useState(null);
-
-  function handleClick() {
-        setValue('X');
-    }
-
     return (
-
-        <button className="square" 
-        onClick={handleClick}>
-            {value}
-        </button>
+    <TbHexagonLetterXFilled size={50}/>
     );
 
 }
