@@ -1,26 +1,87 @@
 .App {
   display: flex;
   flex-direction: column;
-  align-items: center;   /* center horizontally */
-  min-height: 100vh;     /* full page height */
+  align-items: center;
+  min-height: 100vh;
 }
 
 .App-header {
   background-color: #282c34;
+  height: 60px;
   width: 100%;
   text-align: center;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: bold;
   color: rgb(11, 84, 158);
 }
 
-.grid-wrapper {
-  flex: 1;               /* take remaining space */
+/* ============================
+   MAIN 3-COLUMN LAYOUT
+   ============================ */
+
+.game-layout {
   display: flex;
-  justify-content: center;
-  align-items: center;   /* center board vertically */
-  width: 100%;
+  flex-direction: column;
+  width: 100%;            /* full screen width */
+  max-width: 1400px;      /* optional: prevents ultra-wide stretching */
+  margin: 20px auto;
+  gap: 20px;
 }
+
+/* Desktop: 3 columns */
+@media (min-width: 900px) {
+  .game-layout {
+    flex-direction: row;
+    justify-content: space-between;   /* spreads columns evenly */
+    align-items: flex-start;
+  }
+
+  .grid-container {
+    width: 300px;         /* grid fixed width */
+    flex-shrink: 0;
+  }
+
+  .middle-panel {
+    flex: 1;              /* expands to fill space */
+    margin: 0 20px;       /* soft spacing */
+  }
+
+  .history-panel {
+    flex: 1;              /* expands to fill space */
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 700px) and (max-width: 899px) {
+  .game-layout {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .grid-container {
+    width: 300px;
+    margin-right: 20px;
+  }
+
+  .middle-panel,
+  .history-panel {
+    flex: 1;
+    min-width: 260px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 699px) {
+  .middle-panel,
+  .history-panel {
+    width: 100%;
+  }
+}
+
+/* ============================
+   GRID
+   ============================ */
 
 .grid {
   display: flex;
@@ -35,17 +96,168 @@
   background-color: rgb(11, 84, 158);
 }
 
-div + p {
-  color:rgb(11, 84, 158);
-  font-size: 24px;
-  font-weight: bold;
-}
-
+/* ============================
+   BUTTONS
+   ============================ */
 
 #btn {
-  background-color: #66d9ff;
+  background-color: rgb(30, 121, 212);
   border-radius: 8px;
   height: 50px;
   width: 70px;
   margin: 10px;
+}
+
+/* ============================
+   RETRO SCOREBOARD
+   ============================ */
+
+.scoreboard-retro {
+  background: rgb(11, 84, 158);
+  border: 4px solid #fff;
+  padding: 20px;
+  width: 280px;
+  border-radius: 4px;
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+  box-shadow: 0px 0px 0px 6px #000, 0px 0px 0px 10px #fff;
+  text-align: center;
+}
+
+.retro-title {
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px #000;
+}
+
+.retro-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 3px solid #fff;
+}
+
+.retro-label {
+  font-size: 10px;
+}
+
+.retro-value {
+  font-size: 12px;
+}
+
+.winner-box {
+  margin-bottom: 20px;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  background: #222;
+  color: #fff;
+  border: 4px solid #555;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #000 inset;
+  text-shadow: 0 0 4px #0ff;
+}
+
+/* ============================
+   PROGRESS BAR
+   ============================ */
+
+.series-progress {
+  width: 250px;
+  margin: 20px auto;
+  font-family: sans-serif;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.label {
+  width: 20px;
+  font-weight: bold;
+}
+
+.bar {
+  flex: 1;
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.x-fill {
+  background: #4caf50;
+}
+
+.o-fill {
+  background: #2196f3;
+}
+
+.count {
+  width: 40px;
+  text-align: right;
+}
+
+/* ============================
+   GAME HISTORY PANEL
+   ============================ */
+
+.history-container {
+  width: 100%;
+  padding: 12px;
+  background: rgb(11, 84, 158);
+  border-radius: 10px;
+  border: 2px solid #000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: inherit;
+
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.history-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+}
+
+.history-empty {
+  text-align: center;
+  color: #ddd;
+  padding: 6px 0;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-item {
+  padding: 8px 6px;
+  margin: 4px 0;
+  background: #2196f3;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.history-item:hover {
+  background: #f0f0f0;
+  color: #000;
 }
